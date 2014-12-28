@@ -58,6 +58,7 @@ public class Launcher extends javax.swing.JFrame
         gameFrame gameWindow;
         gameWindow = new gameFrame();
         if(!gameWindow.errors()) gameWindow.setVisible(true);
+        gameWindow.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[])
