@@ -36,6 +36,8 @@ public class wordManager
             while(temp < numLines)
             {
                 words[temp] = br.readLine();
+                String toLowerCase = words[temp].toLowerCase();
+                words[temp] = toLowerCase;
                 temp++;
             }
             fileExists = true;

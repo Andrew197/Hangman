@@ -31,7 +31,9 @@ public class gameFrame extends javax.swing.JFrame
         word = wordMgr.getRandomWord();
         dispWord = "";
   
-        for(int i = 0; i< word.length(); i++) dispWord += "-";  
+        for(int i = 0; i< word.length(); i++) 
+            if(word.charAt(i) == ' ') dispWord += " "; 
+            else dispWord += "-";
         wordDisplay.setText(dispWord);
     }
 
@@ -107,11 +109,7 @@ public class gameFrame extends javax.swing.JFrame
     {
         if (manPieces == 6)
         {
-            inputBox.setText(null);
-            inputBox.setEnabled(false);
-            inputBox.setOpaque(false);
-            wordDisplay.setText("FAIL: The word was " + word);
-            return;
+           return;
         }
         String input = inputBox.getText();
         input.toLowerCase();
@@ -136,7 +134,18 @@ public class gameFrame extends javax.swing.JFrame
             }
             else dispWord += oldDispWord.charAt(i);
         }
-        if (!letterFound) drawHangman();
+        if (!letterFound) 
+        {
+            drawHangman();
+            if (manPieces == 6)
+            {
+                inputBox.setText(null);
+                inputBox.setEnabled(false);
+                inputBox.setOpaque(false);
+                wordDisplay.setText("FAIL: The word was " + word);
+                return;
+            }
+        }
         wordDisplay.setText(dispWord);
         inputBox.setText(null);
     }
