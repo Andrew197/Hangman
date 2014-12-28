@@ -1,29 +1,100 @@
-christmas tree
-christmas lights
-ornaments
-icicles
-candy cane
-garland
-snowman
-cheetah
-ocelot
-fire flower
-mushroom
-mario
-luigi
-nintendo
-laptop
-tablet
+aircraft
+alloy
 android
-wireless
-refrigerator
-hamburger
-dictionary
+arrow
 battery
-algorithm
-hangman
-bomb
+beach
+blender
 blizzard
+bomb
+bone
+bread
+breakfast
+butter
+california
+candy cane
+cheese
+cheetah
+chocolate
+christmas lights
+christmas tree
+classic rock
+compact disc
+computer
+controller
+crimson
+cubicle
+diamond
+dictionary
+earth
+electric guitar
+electricity
+emerald
+enchilada
+fire flower
+florida
+forecast
+forest
+furniture
+garland
 gas station
-walmart
+glass
+glow
+great lakes
+green
+hamburger
+hangman
+headphones
+hydroplane
+icicles
+jupiter
+keyboard
+kitchen
+laptop
+lawnmower
+louisiana
+luigi
+mario
+mississippi
+monitor
+mountain
+mushroom
+nintendo
+ocean
+ocelot
+oranges
+ornaments
+ottoman
+pepperoni
+pine tree
+pink floyd
+planet
+plastic
+playing card
+pluto
+poltergeist
+porcelain
+power outlet
+purple
+refridgerator
+sapphire
+saturn
+scratches
+skillet
+snowman
+spatula
+tablet
 target
+television
+texas
+touchpad
+turquoise
+university
+viridian
+walmart
+weather
+weight
+wheels
+windmill
+wireless
+yellowstone

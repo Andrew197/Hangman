@@ -55,7 +55,7 @@ public class wordManager
     //when a new game is requested, send it a random word.
     public String getRandomWord()
     {
-        int randomInt = randInt(0, numLines);
+        int randomInt = randInt(0, numLines - 1);
         return words[randomInt];
     }
     
