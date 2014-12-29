@@ -136,7 +136,7 @@ public class gameFrame extends javax.swing.JFrame
         }
         if (!letterFound) 
         {
-            drawHangman();
+            addHangmanPiece();
             if (manPieces == 6)
             {
                 inputBox.setText(null);
@@ -148,12 +148,33 @@ public class gameFrame extends javax.swing.JFrame
         }
         wordDisplay.setText(dispWord);
         inputBox.setText(null);
+        
+        checkWinCondition();
+    }
+    
+    void checkWinCondition()
+    {
+        Boolean dashesFound = false;
+        for(int i=0;i<dispWord.length();i++)
+        {
+            if (dispWord.charAt(i) == '-') dashesFound = true;
+        }
+        if (!dashesFound)
+        {
+            //we won
+            inputBox.setText(null);
+            inputBox.setEnabled(false);
+            inputBox.setOpaque(false);
+            wordDisplay.setText("Victory! Word is " + word);
+        }
     }
     
     int manPieces = 0;
-    void drawHangman()
+    
+    //add a new body part to the hangman image, when a guessed letter is incorrect
+    void addHangmanPiece()
     {
-        if (manPieces == 0) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/1.png")));
+        if      (manPieces == 0) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/1.png")));
         else if (manPieces == 1) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/2.png")));
         else if (manPieces == 2) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/3.png")));
         else if (manPieces == 3) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/4.png")));
