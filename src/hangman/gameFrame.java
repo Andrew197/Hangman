@@ -17,7 +17,8 @@ public class gameFrame extends javax.swing.JFrame
     private final wordManager wordMgr;
     private String word = "";
     private String dispWord = "";
-    private String usedLetterStr = "Used Letters: ";
+    private final String usedLetterTitle = "Used Letters: ";
+    private String usedLetterStr = "";
     private boolean errors = false;
     
     public boolean errors() { return errors; }
@@ -112,15 +113,25 @@ public class gameFrame extends javax.swing.JFrame
            return;
         }
         String input = inputBox.getText();
-        input.toLowerCase();
+        String toLowerCase = input.toLowerCase();
+        input = toLowerCase;
         
         String oldDispWord = dispWord;
         char letter = input.charAt(0);
+        
+        //check to make sure this letter wasn't attempted yet
+        CharSequence s = "" + letter;
+        if (usedLetterStr.contains(s)) 
+        {
+            inputBox.setText(null);
+            return;
+        }
+        
         dispWord = "";
         boolean letterFound = false;
 
         usedLetterStr += input.charAt(0);
-        usedLetters.setText(usedLetterStr);
+        usedLetters.setText(usedLetterTitle + "" + usedLetterStr);
         for(int i = 0;i<word.length(); i++)
         {
             if (oldDispWord.charAt(i) == '-')
