@@ -19,7 +19,7 @@ public class Launcher extends javax.swing.JFrame
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Hangman Alpha");
+        jLabel1.setText("Hangman (Beta)");
 
         jButton1.setText("Generate Random Game");
         jButton1.addActionListener(new java.awt.event.ActionListener()
