@@ -49,7 +49,7 @@ public class gameFrame extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Hangman");
+        setTitle("Hangout");
         setResizable(false);
 
         wordDisplay.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
