@@ -6,6 +6,8 @@
 
 package hangman;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 
 /**
@@ -27,6 +29,17 @@ public class gameFrame extends javax.swing.JFrame
     {
         this.setDefaultCloseOperation(gameFrame.HIDE_ON_CLOSE);
         initComponents();
+        
+        try
+        {
+            Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png"));
+            setIconImage(image);
+        }
+        catch(Exception e)
+        {
+            System.err.println("Icon Image NOT Found :(");
+        }
+        
         wordMgr = new wordManager();
         if (wordMgr.fileExists()) errors = true;
         word = wordMgr.getRandomWord();
@@ -233,8 +246,7 @@ public class gameFrame extends javax.swing.JFrame
         java.awt.EventQueue.invokeLater(new Runnable()
         {
             public void run()
-            {
-                
+            {               
                 new gameFrame().setVisible(true);
             }
         });

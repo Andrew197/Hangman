@@ -1,9 +1,24 @@
 package hangman;
+
+import java.awt.Image;
+import java.awt.Toolkit;
+
 public class Launcher extends javax.swing.JFrame
 {
     public Launcher()
     {
         initComponents();
+        
+        try
+        {
+            Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png"));
+            setIconImage(image);
+        }
+        catch(Exception e)
+        {
+            System.err.println("Icon Image NOT Found :(");
+        }
+        
     }
 
     @SuppressWarnings("unchecked")
