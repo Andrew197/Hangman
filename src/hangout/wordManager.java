@@ -1,4 +1,4 @@
-package hangman;
+package hangout;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package hangman;
+package hangout;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.FileNotFoundException;
 
 /**
  *
- * @author Peetseys
+ * @author Andrew Pinion
  */
 public class gameFrame extends javax.swing.JFrame
 {
@@ -60,6 +53,7 @@ public class gameFrame extends javax.swing.JFrame
         usedLetters = new javax.swing.JLabel();
         inputBox = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Hangout");
@@ -80,7 +74,16 @@ public class gameFrame extends javax.swing.JFrame
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/0.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangout/0.png"))); // NOI18N
+
+        jButton2.setText("New Game");
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,7 +94,10 @@ public class gameFrame extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usedLetters, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(inputBox))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputBox)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -107,8 +113,10 @@ public class gameFrame extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(inputBox, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputBox, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -119,6 +127,23 @@ public class gameFrame extends javax.swing.JFrame
         submitInput();
     }//GEN-LAST:event_inputBoxActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
+    {//GEN-HEADEREND:event_jButton2ActionPerformed
+        manPieces = 0;
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangout/0.png")));
+        word = wordMgr.getRandomWord();
+        dispWord = "";
+  
+        for(int i = 0; i< word.length(); i++) 
+            if(word.charAt(i) == ' ') dispWord += " "; 
+            else dispWord += "-";
+        wordDisplay.setText(dispWord);
+        usedLetterStr = "";
+        usedLetters.setText(usedLetterTitle + "" + usedLetterStr);
+        inputBox.setEnabled(true);
+        inputBox.setOpaque(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void submitInput()
     {
         if (manPieces == 6)
@@ -128,6 +153,12 @@ public class gameFrame extends javax.swing.JFrame
         String input = inputBox.getText();
         String toLowerCase = input.toLowerCase();
         input = toLowerCase;
+        if (input.equals("")) return;
+        if (input.charAt(0) == '!') 
+        {
+            if (input.contains("kill")) manPieces = 5;
+            //if (input.contains("cheat")) manPieces = 0;
+        }
         
         String oldDispWord = dispWord;
         char letter = input.charAt(0);
@@ -176,6 +207,15 @@ public class gameFrame extends javax.swing.JFrame
         checkWinCondition();
     }
     
+    void kill()
+    {
+        inputBox.setText(null);
+        inputBox.setEnabled(false);
+        inputBox.setOpaque(false);
+        wordDisplay.setText("FAIL: The word was " + word);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangout/6.png")));
+    }
+    
     void checkWinCondition()
     {
         Boolean dashesFound = false;
@@ -190,6 +230,7 @@ public class gameFrame extends javax.swing.JFrame
             inputBox.setEnabled(false);
             inputBox.setOpaque(false);
             wordDisplay.setText("Victory! Word is " + word);
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangout/7.png")));
         }
     }
     
@@ -198,12 +239,12 @@ public class gameFrame extends javax.swing.JFrame
     //add a new body part to the hangman image, when a guessed letter is incorrect
     void addHangmanPiece()
     {
-        if      (manPieces == 0) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/1.png")));
-        else if (manPieces == 1) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/2.png")));
-        else if (manPieces == 2) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/3.png")));
-        else if (manPieces == 3) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/4.png")));
-        else if (manPieces == 4) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/5.png")));
-        else if (manPieces == 5) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangman/6.png")));
+        if      (manPieces == 0) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangout/1.png")));
+        else if (manPieces == 1) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangout/2.png")));
+        else if (manPieces == 2) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangout/3.png")));
+        else if (manPieces == 3) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangout/4.png")));
+        else if (manPieces == 4) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangout/5.png")));
+        else if (manPieces == 5) jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangout/6.png")));
         manPieces++;
         
     }
@@ -254,6 +295,7 @@ public class gameFrame extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField inputBox;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel usedLetters;
     private javax.swing.JLabel wordDisplay;
